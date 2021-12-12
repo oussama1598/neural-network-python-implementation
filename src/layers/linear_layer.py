@@ -1,15 +1,18 @@
+from typing import Type
+
 import numpy as np
 
+from src.initializers import Initializer
 from src.layers.layer import Layer
 
 
 class LinearLayer(Layer):
-    def __init__(self, n, m, initializer):
+    def __init__(self, n: int, m: int, initializer: Type[Initializer]):
         self.n = n
         self.m = m
 
-        self.w = initializer().initialize(m, n)
-        self.b = initializer().initialize(m, 1)
+        self.w = initializer.initialize(m, n)
+        self.b = initializer.initialize(m, 1)
 
     def feed_forward(self, x: np.array):
         self.x = x
